@@ -12,7 +12,7 @@ Legend: ✅ done+verified · 🟡 done, needs live verification (needs keys/depl
 | 6 Brief | ✅ | brief generated + stored; test email accepted by Resend |
 | 7 Dashboard | ✅ desktop screenshot | live deals, feed, ticker, patterns, table; mobile screenshot still to do |
 | 8 3D scene | ✅ GRAPH on desktop | CITY view + mobile still to eyeball |
-| 9 Cron + deploy | ⬜ blocked | Vercel connector token lacks scope (403) and no CLI; import repo at vercel.com/new |
+| 9 Cron + deploy | ✅ | https://startup-funding-pulse-chi.vercel.app — env set via CLI, all routes 200, prod ingest (118 new URLs → 12 new deals) and prod test email verified |
 | 10 Docs | ✅ | README, COMPONENTS_MAP |
 
 ## Decisions (ambiguity → accuracy / demo reliability)
@@ -35,3 +35,4 @@ Legend: ✅ done+verified · 🟡 done, needs live verification (needs keys/depl
 - **Brief format** follows the pasted weekly-digest spec: subject (≤70 chars), hidden preheader, 2-sentence summary, key takeaways, snapshot + methodology, watchlist alerts, notable deals with numbered source refs, signals to watch (labelled analysis), CTA, sources, methodology. One content model renders both the HTML and the plain-text part (sent as multipart). Light, one-column, email-safe (no images/scripts/external CSS). Percentages from tiny bases are suppressed; week-on-week shown only when the prior week has ≥5 deals.
 - **Dashboard default week**: current week once it has ≥5 deals, else the latest completed week.
 - Not visually verified: CITY 3D view and phone width (the in-app browser pane was hidden/flaky); DOM and desktop GRAPH view were.
+- **Deploy gotcha**: Vercel blocks deployments whose commit author has no linked GitHub account; commits now use the GitHub noreply email.

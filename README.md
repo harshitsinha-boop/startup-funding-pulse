@@ -4,6 +4,8 @@ Weekly Indian startup-funding intelligence for **Aarav**, a venture scout at a B
 
 > All AI calls use Gemini via `@google/genai` (default model `gemini-3.6-flash`, set `GEMINI_MODEL`). No Anthropic API anywhere.
 
+**Live:** https://startup-funding-pulse-chi.vercel.app
+
 ## Setup
 1. `npm install`
 2. Create a Supabase project; run `supabase/migrations/0001_init.sql`, `0002_seed_config.sql`, `0003_brief_text.sql` (SQL editor or `supabase db push`). This also enables Realtime on `deals`, `ingest_runs`, `feed_events`.

@@ -45,7 +45,7 @@ flowchart LR
 | Pipeline | `src/lib/ingest/pipeline.ts`, `runlog.ts` | Orchestration, deadline/resume, run + feed logging | – | Supabase |
 | Patterns | `src/lib/patterns.ts` | SQL/code stats, Gemini narration, numeric grounding | week → stats + insights | Gemini |
 | Reconciliation | `src/lib/reconcile.ts` | Parse weekly roundups, match/miss/mismatch, coverage % | roundup → `reconciliations`, `weeks` | Entrackr, Inc42, Gemini |
-| Brief | `src/lib/brief.ts` | HTML email render, store, send | week → `weeks.brief_html` | Resend, Gemini |
+| Brief | `src/lib/brief.ts` | Digest content model → HTML + plain-text email (multipart), numbered sources, store, send | week → `weeks.brief_html` | Resend, Gemini |
 | Jobs/Cron | `src/lib/jobs.ts`, `src/app/api/cron/*` | bearer-protected scheduled entrypoints | – | Vercel Cron |
 | Admin API | `src/app/api/{admin/run,auth,config}` | passcode cookie, manual triggers, config save | – | – |
 | Dashboard API | `src/app/api/{dashboard,system}` | joined deal data, stats, health | – | Supabase |

@@ -106,7 +106,7 @@ export function Dashboard() {
         <div className="flex items-center gap-3 min-w-0"><pre className="ascii-logo glow hide-m" aria-hidden>{LOGO}</pre><h1 className="m-0 text-base glow glitch">STARTUP_FUNDING_PULSE<span className="cursor">&nbsp;</span></h1></div>
         <div className="flex flex-wrap items-center gap-2">
           <label className="caps dim" htmlFor="wk">week</label>
-          <select id="wk" className="field" style={{ width: 'auto' }} value={week ?? ''} onChange={e => { setWeek(e.target.value); load(e.target.value); }}>{(data?.weeks ?? [week ?? '']).map(w => <option key={w} value={w}>[{`wk ${isoWeek(w)}`} · {w}]</option>)}</select>
+          <select id="wk" className="field" style={{ width: 'auto' }} value={week ?? ''} onChange={e => { setWeek(e.target.value); load(e.target.value); }}>{(data?.weeks ?? (week ? [week] : [])).map(w => <option key={w} value={w}>[{`wk ${isoWeek(w)}`} · {w}]</option>)}</select>
           <span className={error ? 'err' : 'ok'}>{error ? '[ERR]' : '[OK]'}</span><span className="dim">{lastIng ? `last ingest ${lastIng} IST` : 'no ingest yet'}</span>
           <a href="/briefs">[ BRIEFS ]</a><a href="/system">[ SYSTEM ]</a><a href="/config">[ CONFIG ]</a>
         </div>

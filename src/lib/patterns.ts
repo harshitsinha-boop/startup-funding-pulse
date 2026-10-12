@@ -100,7 +100,7 @@ export async function narrate(stats: WeekStats, budget: GeminiBudget): Promise<I
   const facts = factsFrom(stats); const factText = facts.join('\n');
   if (stats.total.count === 0) return [];
   const raw = await genJSON<Insight[]>({
-    system: 'You are an analyst writing 3-6 concise insights for a venture scout about one week of Indian startup funding. Use ONLY facts and numbers given; never invent, round differently, or compute new numbers. Each insight: short headline, 1-2 sentence detail, type (sector_trend|stage|investor|outlier|geography|coverage). supporting_deal_ids may be empty.',
+    system: 'You are an analyst writing 3-6 concise insights for a venture scout about one week of Indian startup funding. Use ONLY facts and numbers given; never invent, round differently, or compute new numbers. Do not quote percentage changes above 300% or from a prior-week base under 5 deals; use the absolute figures instead. Each insight: short headline, 1-2 sentence detail, type (sector_trend|stage|investor|outlier|geography|coverage). supporting_deal_ids may be empty.',
     prompt: `FACTS:\n${factText}\n\nKNOWN DEAL IDS:\n${[...stats.largest, ...stats.outliers].map(d => `${d.id} = ${d.company}`).join('\n')}`,
     schema: { type: T.A, items: { type: T.O, properties: { headline: { type: T.S }, detail: { type: T.S }, supporting_deal_ids: { type: T.A, items: { type: T.S } }, type: { type: T.S } }, required: ['headline', 'detail', 'supporting_deal_ids', 'type'] } },
     budget,

@@ -6,7 +6,7 @@ Weekly Indian startup-funding intelligence for **Aarav**, a venture scout at a B
 
 ## Setup
 1. `npm install`
-2. Create a Supabase project; run `supabase/migrations/0001_init.sql` then `0002_seed_config.sql` (SQL editor or `supabase db push`). This also enables Realtime on `deals`, `ingest_runs`, `feed_events`.
+2. Create a Supabase project; run `supabase/migrations/0001_init.sql`, `0002_seed_config.sql`, `0003_brief_text.sql` (SQL editor or `supabase db push`). This also enables Realtime on `deals`, `ingest_runs`, `feed_events`.
 3. `cp .env.example .env.local` and fill:
 
 | Var | Purpose |

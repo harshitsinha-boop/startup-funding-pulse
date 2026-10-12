@@ -14,9 +14,10 @@ export async function GET(req: Request) {
     const cfg = await loadConfig();
     const { data: wk } = await db().from('deals').select('week_start').order('week_start', { ascending: false }).limit(500);
     const weeks = [...new Set([weekStartIST(new Date()), ...(wk ?? []).map(w => w.week_start)])].sort().reverse();
-    // default: current in-progress week if it has deals, else last completed week
+    // default: the in-progress week once it has ≥5 deals, otherwise the last completed week
     const cur = weekStartIST(new Date());
-    const week = url.searchParams.get('week') ?? ((wk ?? []).some(w => w.week_start === cur) ? cur : (weeks.find(w => w <= previousWeekStart()) ?? cur));
+    const curCount = (wk ?? []).filter(w => w.week_start === cur).length;
+    const week = url.searchParams.get('week') ?? (curCount >= 5 ? cur : (weeks.find(w => w <= previousWeekStart() && (wk ?? []).some(x => x.week_start === w)) ?? cur));
     const [deals, stats, wrow, feed, lastRun, watch, inr] = await Promise.all([
       db().from('deals').select('*, deal_investors(role, investors(name)), deal_sources(raw_articles(url, source_slug, title))').eq('week_start', week).order('score', { ascending: false }).limit(500),
       computeStats(week, cfg),

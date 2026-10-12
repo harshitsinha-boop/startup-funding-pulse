@@ -30,7 +30,7 @@ Weekly Indian startup-funding intelligence for **Aarav**, a venture scout at a B
 - `npm run backfill -- --weeks 4` — Google News `when:28d` + roundup reconciliation so week-over-week has history
 
 ## Architecture
-Discover → Pre-filter → Enrich (full text) → Extract (Gemini structured JSON) → Normalise (code) → Dedupe & merge → Confidence → Rank → Adjacency (Gemini) → Store. See **COMPONENTS_MAP.md** (swimlane diagram, flow chart, every component, sources and prompts) and **VIVA_GUIDE.md**.
+Discover → Pre-filter → Enrich (full text) → Extract (Gemini structured JSON) → Normalise (code) → Dedupe & merge → Confidence → Rank → Adjacency (Gemini) → Store. See **COMPONENTS_MAP.md** (swimlane diagram, flow chart, every component, sources and prompts).
 
 Accuracy principles: headlines *discover*, full articles *describe*, weekly roundups *verify*. Gemini never converts currency or computes statistics; every quoted evidence string must be a verbatim substring of the article; pattern insights are discarded unless every number appears in the code-computed facts.
 

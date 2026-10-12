@@ -7,3 +7,7 @@ next-env.d.ts
 .vercel
 vercel.env
 .env*
+
+# personal prep material: never pushed
+deliverables/
+VIVA_GUIDE.md

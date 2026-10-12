@@ -4,15 +4,15 @@ Legend: ✅ done+verified · 🟡 done, needs live verification (needs keys/depl
 
 | Phase | Status | Verified how |
 |---|---|---|
-| 1 Scaffold (Next 16, TS, Tailwind 4, tokens, fonts, CRT, migrations, `.env.example`) | ✅ | `next build` passes |
-| 2 Ingestion (RSS + config-driven Google News, prefilter, enrichment, URL-hash cache, run logging) | ✅ | `npm run pipeline:dry` against live feeds: 5 feeds OK, 179→162 unique→111 prefilter pass, 6/6 full-text |
-| 3 Extraction & normalisation (Gemini schema, evidence verification, FX, units, sector map, dedupe, confidence) | ✅ code / 🟡 live Gemini | 41 vitest tests pass; live extraction needs `GEMINI_API_KEY` |
-| 4 Config + ranking + adjacency | ✅ code / 🟡 live | ranking unit tests; adjacency needs Gemini + watchlist |
-| 5 Reconciliation + patterns + backfill | ✅ code / 🟡 live | grounding tests; Entrackr/Inc42 roundup URLs confirmed live |
-| 6 Brief (HTML email, Resend, archive, manual triggers) | ✅ code / 🟡 live | needs Resend key to send |
-| 7 Dashboard (layout, Realtime feed, table, detail, command bar, patterns, coverage) | ✅ code / 🟡 visual | needs Supabase to render data |
-| 8 3D scene (GRAPH + CITY, filtering, reduced-motion/low-power fallbacks) | ✅ code / 🟡 visual | |
-| 9 Cron + deploy | 🟡 | `vercel.json` present; deploy pending credentials |
+| 1 Scaffold | ✅ | `next build` passes |
+| 2 Ingestion | ✅ | live run: 616 discovered → 455 unique → prefilter → full-text/title extraction; Google News 429 circuit-breaker |
+| 3 Extraction & normalisation | ✅ | live Gemini (`gemini-3.6-flash`): 32 deals from 10 articles, 32/32 evidence-verified; 43 vitest tests |
+| 4 Config + ranking + adjacency | ✅ | exact watchlist hit + Gemini adjacency verified with temporary test entries (removed) |
+| 5 Reconciliation + patterns + backfill | ✅ | 2-week backfill ran; coverage 80% vs Entrackr, 92% vs Inc42 (week of 2026-10-05); 6 grounded insights |
+| 6 Brief | ✅ | brief generated + stored; test email accepted by Resend |
+| 7 Dashboard | ✅ desktop screenshot | live deals, feed, ticker, patterns, table; mobile screenshot still to do |
+| 8 3D scene | ✅ GRAPH on desktop | CITY view + mobile still to eyeball |
+| 9 Cron + deploy | ⬜ blocked | Vercel connector token lacks scope (403) and no CLI; import repo at vercel.com/new |
 | 10 Docs | ✅ | README, COMPONENTS_MAP |
 
 ## Decisions (ambiguity → accuracy / demo reliability)
@@ -27,3 +27,7 @@ Legend: ✅ done+verified · 🟡 done, needs live verification (needs keys/depl
 - **Dashboard data** is served by `/api/dashboard` (service role, joins raw_articles which has no public RLS policy); Realtime uses the anon key on `deals`, `feed_events`, `ingest_runs`.
 - Watchlist is not seeded (it's Aarav's data); config is seeded with the sensible defaults from the brief.
 - INR/USD: Frankfurter daily rate cached in `fx_rates` (observed ₹96.73/USD on 2026-10-09); fallback ₹88 from config.
+- **Gemini speed**: `thinkingLevel: LOW` (env `GEMINI_THINKING`) and 3 parallel extraction calls, persistence sequential.
+- **Roundups are verification-only**: URLs matching `ROUNDUP_URL` are never extracted in normal ingest; a deal only counts as "covered" if it has a non-roundup source (otherwise coverage would be circular).
+- **Google News politeness**: sequential queries, max 15 link resolutions/run, circuit breaker on HTTP 429 (Google throttled the dev IP during backfill). Unresolved items stay title-only → `LOW`.
+- **Prefilter** is stricter than the brief's raw patterns: needs (round word AND money) or a specific round phrase, so trend pieces ("cleantech funding boom") don't burn Gemini calls.

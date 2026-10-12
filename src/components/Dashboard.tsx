@@ -12,6 +12,7 @@ import { WatchlistPane } from './WatchlistPane';
 import { CommandBar, type CmdHandle } from './CommandBar';
 import { AdminControls } from './AdminControls';
 import type { Pick } from './CapitalMap';
+import { SceneBoundary } from './SceneBoundary';
 import { parseCommand, type Filters } from '@/lib/commands';
 import { sb } from '@/lib/supabase-browser';
 import type { DashData, Deal, FeedEvent } from '@/lib/client-types';
@@ -117,7 +118,7 @@ export function Dashboard() {
       {data && (<>
         <div className="grid gap-2 md:grid-cols-[1.4fr_1fr]">
           <Pane title="CAPITAL_MAP.3D" right={<span className="flex gap-1"><Btn className={view === 'graph' ? 'sel' : ''} onClick={() => setView('graph')} aria-pressed={view === 'graph'}>GRAPH</Btn><Btn className={view === 'city' ? 'sel' : ''} onClick={() => setView('city')} aria-pressed={view === 'city'}>CITY</Btn></span>}>
-            <div className="-m-2"><CapitalMap deals={data.deals} prevByKey={prevByKey} activeSector={filters.sector} onPick={pick} view={view} /></div>
+            <div className="-m-2"><SceneBoundary resetKey={view}><CapitalMap deals={data.deals} prevByKey={prevByKey} activeSector={filters.sector} onPick={pick} view={view} /></SceneBoundary></div>
             <div className="dim mt-3 flex flex-wrap gap-x-3"><span><Box size={12} className="inline" color="#33ff00" strokeWidth={2} /> drag·scroll·click to filter</span><span className="err">■ watchlist</span><span className="amber">■ adjacent/investor</span></div>
           </Pane>
           <LiveFeed events={feed} lastRun={data.lastRun} nextRun={data.nextRun} onPickDeal={openByName} live={live} />

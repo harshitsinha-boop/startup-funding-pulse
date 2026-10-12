@@ -80,6 +80,15 @@ function GraphScene({ deals, active, onPick, reduced, lowPower, frozen }: { deal
   </>);
 }
 
+/** Last week's height as a dashed amber outline. Geometry is built up front so dash distances can be computed safely. */
+function Ghost({ h, dim }: { h: number; dim: boolean }) {
+  const ref = useRef<THREE.LineSegments>(null);
+  const geo = useMemo(() => { const b = new THREE.BoxGeometry(1.9, h, 1.9); const e = new THREE.EdgesGeometry(b); b.dispose(); return e; }, [h]);
+  useEffect(() => { ref.current?.computeLineDistances(); }, [geo]);
+  useEffect(() => () => geo.dispose(), [geo]);
+  return (<lineSegments ref={ref} geometry={geo} position={[0, h / 2, 0]}><lineDashedMaterial color={AMBER} dashSize={0.2} gapSize={0.15} transparent opacity={dim ? 0.15 : 0.9} /></lineSegments>);
+}
+
 function CityScene({ deals, prevByKey, active, onPick, reduced }: { deals: Deal[]; prevByKey: Record<string, number>; active?: string; onPick: (p: Pick) => void; reduced: boolean }) {
   const cur = useMemo(() => { const m: Record<string, number> = {}; deals.filter(d => d.status !== 'REPORTED_IN_TALKS').forEach(d => { const k = d.sector ?? 'Other'; m[k] = (m[k] ?? 0) + (d.amount_usd ?? 0); }); return m; }, [deals]);
   const keys = [...new Set([...Object.keys(cur), ...Object.keys(prevByKey)])].sort((a, b) => (cur[b] ?? 0) - (cur[a] ?? 0)).slice(0, 12);
@@ -95,9 +104,7 @@ function CityScene({ deals, prevByKey, active, onPick, reduced }: { deals: Deal[
           <mesh position={[0, h / 2, 0]} onClick={e => { e.stopPropagation(); onPick({ kind: 'sector', name: k }); }} onPointerOver={e => { e.stopPropagation(); setHover(k); document.body.style.cursor = 'pointer'; }} onPointerOut={() => { setHover(null); document.body.style.cursor = ''; }}>
             <boxGeometry args={[1.6, h, 1.6]} /><meshBasicMaterial color={GREEN} wireframe transparent opacity={dim ? 0.15 : 0.9} />
           </mesh>
-          <lineSegments position={[0, ph / 2, 0]} onUpdate={l => l.computeLineDistances()}>
-            <edgesGeometry args={[new THREE.BoxGeometry(1.9, ph, 1.9)]} /><lineDashedMaterial color={AMBER} dashSize={0.2} gapSize={0.15} transparent opacity={dim ? 0.15 : 0.9} />
-          </lineSegments>
+          <Ghost h={ph} dim={dim} />
           <Html position={[0, -0.05, 1.3]} center style={{ pointerEvents: 'none' }}><span style={{ font: '10px JetBrains Mono, monospace', color: '#33ff00', whiteSpace: 'nowrap', background: '#000a' }}>{k.toUpperCase()}</span></Html>
           {hover === k && <Html position={[0, h + 0.4, 0]} center style={{ pointerEvents: 'none' }}><pre style={{ margin: 0, padding: '2px 6px', background: '#000', border: '1px solid #33ff00', color: '#33ff00', font: '11px JetBrains Mono, monospace' }}>{`${k.toUpperCase()}\nnow  ${fmtUsdShort(cur[k] ?? 0)}\nprev ${fmtUsdShort(prevByKey[k] ?? 0)}`}</pre></Html>}
         </group>);

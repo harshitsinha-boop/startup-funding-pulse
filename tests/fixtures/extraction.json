@@ -1,0 +1,9 @@
+{
+  "article": "Bengaluru-based Acme Pay, a fintech startup, has raised $4 Mn in a Seed round led by Foo Capital. Existing investor Bar Ventures also participated, the company said on Tuesday. The startup will use the funds to expand its lending products.",
+  "deals": [{
+    "company_name": "Acme Pay", "company_aliases": ["Acme"], "company_description": "Fintech lending startup", "hq_city": "Bengaluru", "sector": "fintech",
+    "amount_value": 4, "amount_currency": "USD", "amount_unit": "million", "amount_disclosed": true, "stage": "SEED", "instrument": "EQUITY",
+    "lead_investors": ["Foo Capital"], "other_investors": ["Bar Ventures"], "status": "CLOSED", "announcement_date": null,
+    "evidence": { "amount": "has raised $4 Mn in a Seed round led by Foo Capital", "stage": "$4 Mn in a Seed round", "investors": "Existing investor Bar Ventures also participated" }
+  }]
+}

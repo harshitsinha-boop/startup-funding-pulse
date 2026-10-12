@@ -83,3 +83,6 @@ table.t tr.sel { background: #33ff00; color: #000; }
   .hide-m { display: none !important; }
   .wrapline::after { content: " \\"; color: #1f521f; }
 }
+
+/* company names: wrap at word boundaries, never mid-word, and keep a readable minimum width */
+.wrapword { overflow-wrap: break-word; word-break: normal; min-width: 11ch; }

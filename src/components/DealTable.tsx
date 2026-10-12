@@ -31,7 +31,7 @@ export function DealTable({ deals, inr, selectedId, onOpen, title }: { deals: De
               const [bl, bc] = badgeOf(d.confidence); const alert = d.watchlist_hit || d.adjacency?.is_adjacent;
               return (
                 <tr key={d.id} className={`row ${i === cur ? 'cur' : ''} ${d.id === selectedId ? 'sel' : ''}`} onClick={() => { setCur(i); onOpen(d); }}>
-                  <td className="wrap"><span className={alert ? 'err' : ''}>{alert ? '[!] ' : ''}</span>{d.company_name}</td>
+                  <td className="wrapword"><span className={alert ? 'err' : ''}>{alert ? '[!] ' : ''}</span>{d.company_name}</td>
                   <td className="nowrap-m">{stageLabel(d.stage)}</td>
                   <td className="hide-m">{d.sector ?? '—'}</td>
                   <td>{fmtUsdShort(d.amount_usd)}</td>

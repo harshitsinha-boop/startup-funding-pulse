@@ -53,7 +53,13 @@ export async function reconcileRoundup(r: Roundup, log: RunLog, budget: GeminiBu
     const norm = normName(d.company_name);
     const mine = { company_norm: norm, aliases: d.company_aliases, amount_usd: usd, announcement_date: d.announcement_date, week_start: week };
     const { data: cands } = await db().from('deals').select('*').in('company_norm', [norm, ...d.company_aliases.map(normName)]).gte('week_start', addDays(week, -7)).lte('week_start', addDays(week, 7));
-    const hit = (cands ?? []).find(c => matchDeals({ company_norm: c.company_norm, aliases: c.aliases, amount_usd: c.amount_usd, announcement_date: c.announcement_date, week_start: c.week_start }, mine) !== 'DIFFERENT');
+    // A deal counts as covered only if one of its sources is NOT a roundup (otherwise we'd match the roundup against itself)
+    const indep = new Set<string>();
+    if (cands?.length) {
+      const { data: ss } = await db().from('deal_sources').select('deal_id, raw_articles(is_roundup,tier)').in('deal_id', cands.map(c => c.id));
+      (ss ?? []).forEach((x: any) => { if (x.raw_articles && !x.raw_articles.is_roundup && x.raw_articles.tier !== 3) indep.add(x.deal_id); });
+    }
+    const hit = (cands ?? []).filter(c => indep.has(c.id)).find(c => matchDeals({ company_norm: c.company_norm, aliases: c.aliases, amount_usd: c.amount_usd, announcement_date: c.announcement_date, week_start: c.week_start }, mine) !== 'DIFFERENT');
     if (hit) {
       matched++;
       const amtOff = hit.amount_usd && usd && Math.abs(hit.amount_usd - usd) / Math.max(hit.amount_usd, usd) > 0.1;

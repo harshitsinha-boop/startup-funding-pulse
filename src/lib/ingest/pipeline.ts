@@ -14,6 +14,8 @@ import { upsertDeal, checkWatchlist } from './persist';
 import { RunLog } from './runlog';
 import type { Config, NormDeal } from '../types';
 
+export const ROUNDUP_URL = /weekly-funding-report|funding-galore|indian-startups?-raised-.*this-week|this-week-(oct|sep|aug|jul|jun|may|apr|mar|feb|jan|nov|dec)/i;
+
 export interface IngestOpts { deadlineMs?: number; maxArticles?: number; maxGeminiCalls?: number; gnewsDays?: number; skipDiscovery?: boolean }
 
 /** Discover → prefilter → store candidates. Returns the number of new prefilter-passing articles. */
@@ -57,8 +59,9 @@ export async function discover(log: RunLog, cfg: Config, opts: IngestOpts = {}) 
   const fresh = uniq.filter(u => !have.has(u.url_hash));
   log.set('new_urls', fresh.length);
   const rows = fresh.map(c => {
-    const pf = prefilter(c.title, c.summary);
-    return { url: c.url, url_hash: c.url_hash, title: c.title, summary: c.summary, full_text: c.full_text, source_slug: c.source_slug, tier: c.tier,
+    const roundup = ROUNDUP_URL.test(c.url);               // weekly roundups are verification sources, never ingest sources
+    const pf = roundup ? { pass: false } : prefilter(c.title, c.summary);
+    return { is_roundup: roundup, url: c.url, url_hash: c.url_hash, title: c.title, summary: c.summary, full_text: c.full_text, source_slug: c.source_slug, tier: c.tier,
       published_at: c.published_at, prefilter_pass: pf.pass, fetch_status: c.full_text ? 'ok' : 'pending', extract_status: pf.pass ? 'pending' : 'skipped' };
   });
   for (const part of chunk(rows, 200)) { const r = await db().from('raw_articles').upsert(part, { onConflict: 'url_hash', ignoreDuplicates: true }); if (r.error) await log.log('ERR', `store articles: ${r.error.message}`); }

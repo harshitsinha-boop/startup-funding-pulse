@@ -118,15 +118,15 @@ export async function checkWatchlist(week: string | null, watch: WatchItem[], cf
     const batch = eligible.slice(i, i + 8);
     try {
       const res = await genJSON<{ deal_id: string; matches: { watchlist_company: string; is_adjacent: boolean; relationship: string; reason: string }[] }[]>({
-        system: 'You compare newly funded companies to a watchlist of portfolio companies. A match means competitor, adjacent (same customer/problem space), supplier, or customer of the watchlist company. Be strict: only is_adjacent=true when there is a concrete business relationship; give a one-sentence reason. Use only the supplied descriptions; do not invent facts.',
-        prompt: `WATCHLIST:\n${watch.map(w => `- ${w.name}: ${w.description}`).join('\n')}\n\nDEALS:\n${batch.map(d => `id=${d.id} | ${d.company_name} | sector=${d.sector} | ${d.description ?? 'no description'}`).join('\n')}`,
+        system: 'You compare newly funded companies to a watchlist of portfolio companies. A match means competitor, adjacent (same customer/problem space), supplier, or customer of the watchlist company. Be strict: being in the same broad sector (e.g. both are fintech) is NOT enough. Only is_adjacent=true when the products or target customers concretely overlap (competitor), or one clearly sells to/buys from the other; give a one-sentence reason naming the overlap. Use only the supplied descriptions; do not invent facts.',
+        prompt: `WATCHLIST:\n${watch.map(w => `- ${w.name}: ${w.description}`).join('\n')}\n\nDEALS:\n${batch.map((d, bi) => `id=D${bi} | ${d.company_name} | sector=${d.sector} | ${d.description ?? 'no description'}`).join('\n')}`,
         schema: { type: T.A, items: { type: T.O, properties: { deal_id: { type: T.S }, matches: { type: T.A, items: { type: T.O, properties: {
           watchlist_company: { type: T.S }, is_adjacent: { type: T.B }, relationship: { type: T.S, enum: ['competitor', 'adjacent', 'supplier', 'customer'] }, reason: { type: T.S } },
           required: ['watchlist_company', 'is_adjacent', 'relationship', 'reason'] } } }, required: ['deal_id', 'matches'] } },
         budget,
       });
-      for (const d of batch) {
-        const m = res.find(r => r.deal_id === d.id)?.matches.find(x => x.is_adjacent && watch.some(w => w.name === x.watchlist_company));
+      for (const [bi, d] of batch.entries()) {
+        const m = res.find(r => r.deal_id === `D${bi}`)?.matches.find(x => x.is_adjacent && watch.some(w => w.name === x.watchlist_company));
         const adj = m ? { is_adjacent: true, watchlist_company: m.watchlist_company, relationship: m.relationship, reason: m.reason } : { is_adjacent: false };
         const { data: row } = await db().from('deals').select('sector,stage,amount_usd,watchlist_hit,confidence').eq('id', d.id).single();
         await db().from('deals').update({ adjacency: adj, score: scoreDeal({ ...(row as any), adjacency: adj }, cfg) }).eq('id', d.id);

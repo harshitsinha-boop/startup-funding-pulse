@@ -8,7 +8,8 @@
     "start": "next start",
     "test": "vitest run",
     "pipeline:dry": "tsx scripts/pipeline-dry.ts",
-    "backfill": "tsx scripts/backfill.ts"
+    "backfill": "tsx scripts/backfill.ts",
+    "reconcile": "tsx scripts/reconcile.ts"
   },
   "dependencies": {
     "@google/genai": "^2.28.0",

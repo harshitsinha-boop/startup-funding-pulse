@@ -1,5 +1,9 @@
 # COMPONENTS MAP
 
+![Startup Funding Pulse components map](public/components-map.png)
+
+*Swimlane view (also live at `/components-map`). Source: `scripts/build-components-map.py` → `public/components-map.svg`. PNG export: headless Chrome at 2x (see the script header).* The Mermaid flow and tables below give the same system in more detail.
+
 ## Architecture
 ```mermaid
 flowchart LR

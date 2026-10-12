@@ -140,8 +140,12 @@ export async function recipients(): Promise<string[]> {
   return [...new Set([...(cfg.emailRecipients ?? []), ...(process.env.BRIEF_TO_EMAIL ? process.env.BRIEF_TO_EMAIL.split(',') : [])].map(s => s.trim()).filter(Boolean))];
 }
 
-export async function generateBrief(opts: { week?: string; send?: boolean; test?: boolean } = {}) {
+export async function generateBrief(opts: { week?: string; send?: boolean; test?: boolean; onlyIfUnsent?: boolean } = {}) {
   const week = opts.week ?? previousWeekStart(); const budget = new GeminiBudget(10);
+  if (opts.send && opts.onlyIfUnsent) {                 // idempotent Monday send: the retry cron never double-sends
+    const { data: w } = await db().from('weeks').select('sent_at').eq('week_start', week).maybeSingle();
+    if (w?.sent_at) return { week, sent: null, error: null, skipped: 'already sent ' + w.sent_at };
+  }
   const log = new RunLog(true, 'brief'); await log.start();
   let sent: string | null = null, error: string | null = null;
   try {
@@ -157,5 +161,5 @@ export async function generateBrief(opts: { week?: string; send?: boolean; test?
     }
   } catch (e: any) { error = e.message; await log.log('ERR', e.message); }
   await log.finish(error ? 'error' : 'ok', budget);
-  return { week, sent, error };
+  return { week, sent, error, skipped: null as string | null };
 }

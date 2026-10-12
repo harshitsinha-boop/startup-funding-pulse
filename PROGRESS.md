@@ -36,3 +36,6 @@ Legend: ✅ done+verified · 🟡 done, needs live verification (needs keys/depl
 - **Dashboard default week**: current week once it has ≥5 deals, else the latest completed week.
 - Not visually verified: CITY 3D view and phone width (the in-app browser pane was hidden/flaky); DOM and desktop GRAPH view were.
 - **Deploy gotcha**: Vercel blocks deployments whose commit author has no linked GitHub account; commits now use the GitHub noreply email.
+- **Monday email**: daily cron branches by weekday; a second Monday cron (07:00 IST) is an idempotent retry. Resend confirmed `delivered` for both test sends.
+- **Public manual triggers** with server-side cooldown + single-run guard; `/config` stays passcode-protected.
+- **CITY view crash** fixed (ghost-outline geometry); 3D wrapped in an error boundary.

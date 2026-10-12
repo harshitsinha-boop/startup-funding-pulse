@@ -30,12 +30,16 @@ Weekly Indian startup-funding intelligence for **Aarav**, a venture scout at a B
 - `npm run backfill -- --weeks 4` — Google News `when:28d` + roundup reconciliation so week-over-week has history
 
 ## Architecture
-Discover → Pre-filter → Enrich (full text) → Extract (Gemini structured JSON) → Normalise (code) → Dedupe & merge → Confidence → Rank → Adjacency (Gemini) → Store. See **COMPONENTS_MAP.md** for the diagram, every component, sources and prompts.
+Discover → Pre-filter → Enrich (full text) → Extract (Gemini structured JSON) → Normalise (code) → Dedupe & merge → Confidence → Rank → Adjacency (Gemini) → Store. See **COMPONENTS_MAP.md** (swimlane diagram, flow chart, every component, sources and prompts) and **VIVA_GUIDE.md**.
 
 Accuracy principles: headlines *discover*, full articles *describe*, weekly roundups *verify*. Gemini never converts currency or computes statistics; every quoted evidence string must be a verbatim substring of the article; pattern insights are discarded unless every number appears in the code-computed facts.
 
 ## Scheduling (Vercel Cron)
-`vercel.json` runs one daily cron `/api/cron/daily` at 00:30 UTC (06:00 IST): ingest every day, **reconcile on Sunday**, **brief on Monday**. Hobby plans allow daily crons only. On Pro you can add `/api/cron/ingest` more often, `/api/cron/reconcile` (`30 12 * * 0`) and `/api/cron/brief` (`30 0 * * 1`). Every route sets `maxDuration = 300` and is resumable (queue = `raw_articles.extract_status`).
+`vercel.json` registers two crons (the Hobby plan allows two, each at most daily):
+- `/api/cron/daily` at **00:30 UTC (06:00 IST)** every day: ingest; **Sunday** also reconciles against the weekly roundups; **Monday** also builds and **emails the brief** for the previous Monday–Sunday week.
+- `/api/cron/brief-retry` at **01:30 UTC Monday (07:00 IST)**: sends the brief *only if* the 06:00 run did not (idempotent via `weeks.sent_at`, so it can never double-send).
+
+Hobby crons fire within the scheduled hour, so the email lands between 06:00 and 08:00 IST. Every route sets `maxDuration = 300` and ingestion is resumable (queue = `raw_articles.extract_status`). Dedicated `/api/cron/{ingest,reconcile,brief}` routes exist for Pro plans.
 
 ## Data sources & limitations
 | Source | Method | Notes |

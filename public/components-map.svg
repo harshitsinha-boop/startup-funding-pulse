@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1476 1608" width="1476" height="1608" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5f5f5f"/></marker></defs>
+<rect width="1476" height="1608" fill="#f8f4ed"/>
+<text x="738.0" y="40" text-anchor="middle" font-size="23" font-weight="700" fill="#2b211a">Startup Funding Pulse · Components Map</text>
+<rect x="168" y="104" width="1284" height="216" fill="#e4e7fb"/>
+<rect x="12.0" y="104" width="156.0" height="216" fill="#5b4a3b"/>
+<text x="90.0" y="210.0" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Scheduler</text>
+<text x="90.0" y="228.0" text-anchor="middle" font-size="11" fill="#e8dccf">(Vercel Cron)</text>
+<rect x="168" y="320" width="1284" height="318" fill="#dcf0ee"/>
+<rect x="12.0" y="320" width="156.0" height="318" fill="#5b4a3b"/>
+<text x="90.0" y="477.0" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">News sources</text>
+<text x="90.0" y="495.0" text-anchor="middle" font-size="11" fill="#e8dccf">(RSS / roundups)</text>
+<rect x="168" y="638" width="1284" height="318" fill="#fbf1cf"/>
+<rect x="12.0" y="638" width="156.0" height="318" fill="#5b4a3b"/>
+<text x="90.0" y="795.0" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">System</text>
+<text x="90.0" y="813.0" text-anchor="middle" font-size="11" fill="#e8dccf">(Vercel + Supabase)</text>
+<rect x="168" y="956" width="1284" height="318" fill="#e2f2df"/>
+<rect x="12.0" y="956" width="156.0" height="318" fill="#5b4a3b"/>
+<text x="90.0" y="1113.0" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">AI models</text>
+<text x="90.0" y="1131.0" text-anchor="middle" font-size="11" fill="#e8dccf">(Gemini Flash)</text>
+<rect x="168" y="1274" width="1284" height="128" fill="#fbe1e6"/>
+<rect x="12.0" y="1274" width="156.0" height="128" fill="#5b4a3b"/>
+<text x="90.0" y="1336.0" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Email service</text>
+<text x="90.0" y="1354.0" text-anchor="middle" font-size="11" fill="#e8dccf">(Resend)</text>
+<rect x="168" y="1402" width="1284" height="128" fill="#fde8d6"/>
+<rect x="12.0" y="1402" width="156.0" height="128" fill="#5b4a3b"/>
+<text x="90.0" y="1464.0" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Aarav</text>
+<text x="90.0" y="1482.0" text-anchor="middle" font-size="11" fill="#e8dccf">(Venture scout)</text>
+<rect x="12.0" y="64" width="1452" height="40" fill="#5b4a3b"/>
+<text x="90.0" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Actor</text>
+<text x="275.0" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Trigger</text>
+<text x="489.0" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Input</text>
+<line x1="382" y1="104" x2="382" y2="1530" stroke="#fff" stroke-width="2"/>
+<text x="703.0" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Context</text>
+<line x1="596" y1="104" x2="596" y2="1530" stroke="#fff" stroke-width="2"/>
+<text x="917.0" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Processing</text>
+<line x1="810" y1="104" x2="810" y2="1530" stroke="#fff" stroke-width="2"/>
+<text x="1131.0" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">AI</text>
+<line x1="1024" y1="104" x2="1024" y2="1530" stroke="#fff" stroke-width="2"/>
+<text x="1345.0" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Output</text>
+<line x1="1238" y1="104" x2="1238" y2="1530" stroke="#fff" stroke-width="2"/>
+<path d="M369,158 H382 V374 H395" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M369,158 H382 V476 H395" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M583,374 H802 V692 H823" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M583,476 H802 V692 H823" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M797,692 H810 V692 H823" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M797,578 H818 V794 H823" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1011,692 H1020 V1010 H1037" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1225,1010 H1230 V692 H1251" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1225,1112 H1240 V794 H1251" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1011,794 H1131 V794 H1251" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1345,734 V752" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1345,836 V854" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1345,938 V1296" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1225,1214 H1248 V1338 H1251" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1345,1380 V1424" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M369,1466 H590 V692 H609" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M369,260 H1456 V896 H1440" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<path d="M1439,794 H1442 V1466 H1440" fill="none" stroke="#5f5f5f" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ah)"/>
+<rect x="181" y="116" width="188" height="84" rx="9" fill="#c9cffa" stroke="#5a63c8" stroke-width="1.6"/>
+<text x="275" y="142" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Daily cron, 06:00 IST</text>
+<text x="275" y="161" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">ingest every day; Sunday</text>
+<text x="275" y="180" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">reconciles, Monday briefs</text>
+<rect x="181" y="218" width="188" height="84" rx="9" fill="#c9cffa" stroke="#5a63c8" stroke-width="1.6"/>
+<text x="275" y="244" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Monday retry, 07:00 IST</text>
+<text x="275" y="263" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">sends the brief only if</text>
+<text x="275" y="282" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">the 06:00 run did not</text>
+<rect x="395" y="332" width="188" height="84" rx="9" fill="#bfe6e1" stroke="#2a8f86" stroke-width="1.6"/>
+<text x="489" y="358" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Tier 1: Indian media</text>
+<text x="489" y="377" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">Inc42, YourStory, Entrackr,</text>
+<text x="489" y="396" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">ET Tech: RSS + full text</text>
+<rect x="395" y="434" width="188" height="84" rx="9" fill="#bfe6e1" stroke="#2a8f86" stroke-width="1.6"/>
+<text x="489" y="460" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Tier 2: Google News</text>
+<text x="489" y="479" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">queries built from Aarav's</text>
+<text x="489" y="498" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">sectors + watchlist names</text>
+<rect x="609" y="536" width="188" height="84" rx="9" fill="#bfe6e1" stroke="#2a8f86" stroke-width="1.6"/>
+<text x="703" y="562" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Tier 3: weekly roundups</text>
+<text x="703" y="581" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">Entrackr report, Inc42 Galore:</text>
+<text x="703" y="600" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">verification, never ingested</text>
+<rect x="609" y="650" width="188" height="84" rx="9" fill="#f6e29a" stroke="#b58a00" stroke-width="1.6"/>
+<text x="703" y="676" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Config + watchlist</text>
+<text x="703" y="695" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">edited by Aarav in /config,</text>
+<text x="703" y="714" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">applied on the next ingest</text>
+<rect x="823" y="650" width="188" height="84" rx="9" fill="#f6e29a" stroke="#b58a00" stroke-width="1.6"/>
+<text x="917" y="676" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Pre-filter + enrich</text>
+<text x="917" y="695" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">funding-signal regex, robots-</text>
+<text x="917" y="714" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">aware full text, URL cache</text>
+<rect x="823" y="752" width="188" height="84" rx="9" fill="#f6e29a" stroke="#b58a00" stroke-width="1.6"/>
+<text x="917" y="778" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Reconcile (Sunday)</text>
+<text x="917" y="797" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">match roundup deals, add the</text>
+<text x="917" y="816" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">missed, coverage % per week</text>
+<rect x="1251" y="650" width="188" height="84" rx="9" fill="#f6e29a" stroke="#b58a00" stroke-width="1.6"/>
+<text x="1345" y="676" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Normalise + dedupe</text>
+<text x="1345" y="695" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">FX + units in code, IST weeks,</text>
+<text x="1345" y="714" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">name / amount / date merge</text>
+<rect x="1251" y="752" width="188" height="84" rx="9" fill="#f6e29a" stroke="#b58a00" stroke-width="1.6"/>
+<text x="1345" y="778" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Deals stored + ranked</text>
+<text x="1345" y="797" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">confidence, score vs config,</text>
+<text x="1345" y="816" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">Realtime feed to dashboard</text>
+<rect x="1251" y="854" width="188" height="84" rx="9" fill="#f6e29a" stroke="#b58a00" stroke-width="1.6"/>
+<text x="1345" y="880" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Brief built + archived</text>
+<text x="1345" y="899" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">stats in code, HTML + text,</text>
+<text x="1345" y="918" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">one stored copy per week</text>
+<rect x="1037" y="968" width="188" height="84" rx="9" fill="#c9e8c2" stroke="#3f8f33" stroke-width="1.6"/>
+<text x="1131" y="994" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Extraction</text>
+<text x="1131" y="1013" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">structured JSON, temp 0; quotes</text>
+<text x="1131" y="1032" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">must be verbatim; roundups</text>
+<rect x="1037" y="1070" width="188" height="84" rx="9" fill="#c9e8c2" stroke="#3f8f33" stroke-width="1.6"/>
+<text x="1131" y="1096" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Adjacency + tie-breaks</text>
+<text x="1131" y="1115" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">competitor / adjacent vs the</text>
+<text x="1131" y="1134" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">watchlist; sector; same-deal</text>
+<rect x="1037" y="1172" width="188" height="84" rx="9" fill="#c9e8c2" stroke="#3f8f33" stroke-width="1.6"/>
+<text x="1131" y="1198" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Pattern narration</text>
+<text x="1131" y="1217" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">numbers computed in code;</text>
+<text x="1131" y="1236" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">ungrounded insights dropped</text>
+<rect x="1251" y="1296" width="188" height="84" rx="9" fill="#f7c3cd" stroke="#c2415d" stroke-width="1.6"/>
+<text x="1345" y="1322" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Monday digest</text>
+<text x="1345" y="1341" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">HTML + plain text, numbered</text>
+<text x="1345" y="1360" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">sources, watchlist alerts</text>
+<rect x="181" y="1424" width="188" height="84" rx="9" fill="#f9d0ae" stroke="#c0661a" stroke-width="1.6"/>
+<text x="275" y="1450" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Sets his focus (/config)</text>
+<text x="275" y="1469" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">sectors, stages, cheque range,</text>
+<text x="275" y="1488" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">watchlist, weights; passcode</text>
+<rect x="1251" y="1424" width="188" height="84" rx="9" fill="#f9d0ae" stroke="#c0661a" stroke-width="1.6"/>
+<text x="1345" y="1450" text-anchor="middle" font-size="14" font-weight="700" fill="#2b211a">Reads brief, explores</text>
+<text x="1345" y="1469" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">inbox before 8 AM; terminal UI,</text>
+<text x="1345" y="1488" text-anchor="middle" font-size="11.5" font-weight="400" fill="#2b211a">3D capital map, command bar</text>
+<text x="12.0" y="1560" font-size="12" fill="#4a3d33">Accuracy: headlines discover, full articles describe, roundups verify. Gemini never converts currency or computes stats; every quoted evidence sentence is checked as a verbatim substring.</text>
+<text x="12.0" y="1580" font-size="12" fill="#4a3d33">Honesty: rumoured deals are excluded from totals; coverage only counts deals with a non-roundup source; week-on-week is shown only when the prior week has 5+ deals. Dashed arrows = data / control flow.</text>
+</svg>

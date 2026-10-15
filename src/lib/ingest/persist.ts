@@ -100,7 +100,7 @@ export async function checkWatchlist(week: string | null, watch: WatchItem[], cf
   if (!watch.length) return;
   let q = db().from('deals').select('*').is('adjacency', null);
   if (week) q = q.gte('week_start', addDays(week, -7));
-  const { data: deals } = await q.limit(200);
+  const { data: deals } = await q.limit(400);
   if (!deals?.length) return;
   const wNorm = watch.map(w => ({ w, names: [w.name, ...(w.aliases ?? [])].map(normName) }));
   const todo: any[] = [];

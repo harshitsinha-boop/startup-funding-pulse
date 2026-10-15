@@ -23,7 +23,7 @@ export function ConfigEditor() {
   const toggle = (arr: string[], v: string) => (arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v]);
   const save = async () => {
     setMsg(null); const r = await fetch('/api/config', { method: 'PUT', body: JSON.stringify({ config: cfg, watchlist: watch, sources: sources.map(s => ({ slug: s.slug, enabled: s.enabled })) }) });
-    setMsg(r.ok ? { t: '[OK] saved — applies on next ingest (Google News queries regenerate from this)' } : { t: `[ERR] ${(await r.json()).error}`, err: true });
+    setMsg(r.ok ? { t: '[OK] saved — watchlist is being re-checked against recent deals now (refresh the dashboard in ~1 min); Google News queries regenerate on the next ingest' } : { t: `[ERR] ${(await r.json()).error}`, err: true });
   };
   const num = (v: number, f: (n: number) => void) => <input className="field" type="number" value={v} onChange={e => f(Number(e.target.value))} />;
   return (
